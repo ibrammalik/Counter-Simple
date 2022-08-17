@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(() => {
+    return 0;
+  });
+
+  const decrementCount = () => {
+    if (count === 0) {
+      alert("sudah habis pacarmu");
+    } else {
+      setCount((prevCount) => prevCount - 1);
+    }
+  };
+
+  const incrementCount = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>count</h1>
+      <button onClick={decrementCount}>-</button>
+      <span>{count}</span>
+      <button onClick={incrementCount}>+</button>
     </div>
   );
 }
