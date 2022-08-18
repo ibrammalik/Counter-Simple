@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Toast from "react-bootstrap/Toast";
 import Black from "./asset/images/black.png";
@@ -10,6 +10,10 @@ function App() {
 
   const [show, setShow] = useState(() => {
     return false;
+  });
+
+  const [status, setStatus] = useState(() => {
+    return "Jomblo";
   });
 
   const decrementCount = () => {
@@ -27,10 +31,14 @@ function App() {
     setCount((prevCount) => prevCount + 1);
   };
 
+  useEffect(() => {
+    count === 0 ? setStatus("Jomblo") : setStatus("Berpasangan");
+  }, [count]);
+
   return (
     <div className="App">
       <div className="App-header">
-        <h3>Counter</h3>
+        <h3>Pacar Kamu</h3>
         <div className="Button-container" id="button-container">
           <button onClick={decrementCount} className="Button" id="decrement-button">
             -
@@ -40,6 +48,7 @@ function App() {
             +
           </button>
         </div>
+        <h3>Status Kamu : {status}</h3>
         <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide className="position-fixed bottom-0 end-0 m-3">
           <Toast.Header>
             <img src={Black} className="rounded me-2" alt="" />
