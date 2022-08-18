@@ -32,7 +32,7 @@ function App() {
   };
 
   useEffect(() => {
-    count === 0 ? setStatus("Jomblo") : setStatus("Berpasangan");
+    count === 0 ? setStatus("Jomblo") : count === 1 ? setStatus("Berpasangan") : count <= 4 ? setStatus("Poligami") : setStatus("Di Luar Nalar !!");
   }, [count]);
 
   return (
